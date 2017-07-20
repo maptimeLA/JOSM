@@ -7,4 +7,3 @@ In this tutorial we will learn:
 * how to get OSM data into JOSM
 * a quick overview of filtering
 * a quick overview of bus routes/relations
-

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+	<title>JOSM</title>
+	<link target="_blank" href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+	<style>
+		/*
+			SLIDE STYLES:
+			All slides are assumed to contain one 'p' element, one 'img' element, or one of each.
+			<div class="slide">
+				-- Default style. If no image, text is centered. If image present, it is centered and text is at the top.
+				-- Arbitrary content could go here too (e.g. I used a couple of iframes), but default behavior will mess with any p or img elements.
+			<div class="slide image_full">
+				-- Full 1024x768 img, somewhat faded to black and with bold white text (p) centered on top.
+			<div class="slide image_bottom">
+				-- Mostly like default except that image appears at the bottom. (Basically just to give more room for longer text).
+
+			Can make additional class styles for p elements and such if you need different text sizes, colors, etc.
+			(e.g. there is a p.title style with a bigger font)
+			img elements themselves are not displayed; rather, their src attributes are applied as div backgrounds. This is to make centering easier, basically.
+		*/
+		html, body{
+			margin: 0;
+			font: 20px/24px "PT Sans", sans-serif;
+			background-color: #FFF;
+		}
+		.slide, .slide div, .slide.black{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 1024px;
+			height: 768px;
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+		.slide{
+			background-color: #FFF;
+
+		}
+		.slide.image_bottom, .slide.black{
+			background-position: center bottom;
+		}
+		.slide p{
+			left: 30px;
+			position: absolute;
+			font-size: 64px;
+			line-height: 90px;
+			font-weight: bold;
+			text-align: left;
+			margin: 15px 1% 0 1%;
+			width: 98%;
+		}
+		.slide.black p{
+			left: 30px;
+			position: absolute;
+			font-size: 64px;
+			line-height: 90px;
+			font-weight: bold;
+			text-align: left;
+			margin: 15px 1% 0 1%;
+			width: 98%;
+			color: white;
+		}
+		.slide img{
+			display: none;
+		}
+		.slide.image_full{
+			background-color: black;
+		}
+		.slide.black{
+			background-color: black;
+		}
+		.slide.image_full div{
+			opacity: .5;
+		}
+		.slide.image_full p{
+			color: white;
+			text-shadow:0px 0px 10px #000000;
+		}
+		.slide.image_full.repeat div{
+			background-position: 0 0;
+			background-repeat: repeat;
+		}
+		.slide p.title{
+			font-size: 60px;
+			line-height: 60px;
+		}
+		.slide p.small{
+			font-size: 45px;
+			line-height: 45px;
+		}
+		a{
+			color: #2859cc;
+			text-decoration: none;
+		}
+		a:hover{
+			text-decoration: underline;
+		}
+		a.citation{
+			position: absolute;
+			bottom: 5px;
+			right: 5px;
+			color: #000;
+			background-color: rgba(255,255,255,.75);
+		}
+		.code{
+			font-family: 'Courier New';
+		}
+	</style>
+</head>
+<body>
+
+<div class="slide image_full">
+	<img src="images/coverpage.jpg"/>
+<p class="title">MaptimeLA presents: <br>Editing OpenStreetMap<br>with JOSM!<br><br>
+	<a target="_blank" href="http://github.com/maptimeLA">#maptimeLA</a></p>
+</div>
+
+<div class="slide">
+	<p><u>Thank You</u><br>
+	to <a target="_blank" href="http://www.arup.com/">Arup</a> for the space<br>
+  </p>
+</div>
+
+<div class="slide image_bottom">
+	<p><a target="_blank" href="https://josm.openstreetmap.de/">JOSM</a> is an open source Java desktop app for editing OSM.<br><br>
+  <br></p>
+	<img src="images/logo.png"/>
+</div>
+
+<div class="slide">
+	<p class="small">It's a bit trickier than iD. Reasons to use JOSM:<br><br>
+	 &#8194 &#8226 bulk editing/import &#x26A0 <br>
+	 &#8194 &#8226 more editing tools (plugins!)<br>
+	 &#8194 &#8226 get at all the underlying data<br>
+   &#8194 &#8226 save work in progress<br>
+   &#8194 &#8226 work offline<br></p>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Open JOSM.<br>
+	You should see a screen like this:<br></p>
+	<img src="images/01_josm.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Before we start, let's set get JOSM set up.
+  Go to Edit\Preferences<br>
+	<br></p>
+	<img src="images/02_pref.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Click on the globe and enter credentials to connect your account:<br>
+	<br></p>
+	<img src="images/03_login.png"/>
+</div>
+
+<div class="slide black">
+	<p>Your account credentials are needed when you upload your edits. You can view/edit without logging in.</p>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Click on the remote and enable remote control:<br>
+	<br></p>
+	<img src="images/05_remotecontrol.png"/>
+</div>
+
+<div class="slide black">
+	<p>This lets you connect to JOSM from OSM or <a target="_blank" href="http://tasks.hotosm.org/">HOTOSM</a></p>
+</div>
+
+<div class="slide black">
+	<p>Use <a target="_blank" href="https://josm.openstreetmap.de/wiki/Plugins">plugins</a> to get more tools.
+	You can install directly from JOSM.</p>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Click on the electric plug, tick boxes, and click "Update plugins":<br>
+	<br></p>
+	<img src="images/04_plugins.png"/>
+</div>
+
+<div class="slide black">
+	<p>How do we get OSM data in JOSM?</p>
+</div>
+
+<div class="slide">
+	<p class="small">There are several ways to get OSM data into JOSM:<br><br>
+	 &#8194 &#8226 extract from JOSM<br>
+	 &#8194 &#8226 connect via OSM site<br>
+	 &#8194 &#8226 connect via HOTOSM site<br>
+   &#8194 &#8226 connect via Overpass (fiddly!)<br>
+   &#8194 &#8226 download and import<br></p>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Open <a target="_blank" href="https://www.openstreetmap.org">OpenStreetMap</a> and zoom
+    to your area of interest. Click Edit, Edit with Remote Control:<br>
+	<br></p>
+	<img src="images/06_osm.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">You must have JOSM open. If you do and still get this error, use http instead of https:<br>
+	<br></p>
+	<img src="images/07_error.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">If everything works, you'll see data in JOSM!<br>
+	<br></p>
+	<img src="images/09_data.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Let's add an aerial image for context. Go to Imagery, Bing aerial imagery:<br>
+	<br></p>
+	<img src="images/10_aerial.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Now let's try adding data from within JOSM. Go to File, Download from OSM. Pick your area and click Download:<br>
+	<br></p>
+	<img src="images/11_getdata2.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">If everything works, you'll see data in JOSM!<br>
+	<br></p>
+	<img src="images/12_data.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">You can use Select to modify and Add to create features:<br>
+	<br></p>
+	<img src="images/13_edit.png"/>
+</div>
+
+<div class="slide black">
+	<p>We don't have time to go into details, so visit the Wiki for help on
+    <a target="_blank" href="http://wiki.openstreetmap.org/wiki/JOSM/Basic_editing">Basic</a> and
+    <a target="_blank" href="http://wiki.openstreetmap.org/wiki/JOSM/Advanced_editing">Advanced</a> editing.</p>
+</div>
+
+<div class="slide">
+	<p class="small">Filtering is a great feature of JOSM that can help you create bus routes &#x1F68C<br><br>
+	 1. filter out only roads that are part of route<br>
+	 2. select the road segments that make up the route<br>
+	 3. use Presets, Transport<br>
+   4. enter route info<br>
+   5. create relation<br></p>
+</div>
+
+<div class="slide">
+	<p class="small">Filter by street name and road type:<br>
+	<br></p>
+	<img src="images/21_filterroad.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Then you can invert to only show filter features and select the segments you need:<br>
+	<br></p>
+	<img src="images/22_filtershow.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Go to Presets, Transport, Public Transport, Route Bus and enter the bus route info:<br>
+	<br></p>
+	<img src="images/23_bus.png"/>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">Create the relation that relates the route to the road segments it travels on:<br>
+	<br></p>
+	<img src="images/24_relation.png"/>
+</div>
+
+<div class="slide black">
+	<p>Unlike a train which has its on way (line), a bus route relies on roads which are the way (line).</p>
+</div>
+
+<div class="slide image_bottom">
+	<p class="small">You can select all the segments that make up a bus route by right clicking the relation:<br>
+	<br></p>
+	<img src="images/25_relationselect.png"/>
+</div>
+
+<div class="slide black">
+	<p>Until you go to File, Upload data everything you change is local, so have fun and learn!</p>
+</div>
+
+<script>
+	// The following is mostly derived from https://github.com/tmcw/big
+	var slides = document.getElementsByClassName("slide"),
+		current = 0;
+	function go(n){
+		current = n;
+		var slide = slides[n],
+			classes = slide.className.split(" ");
+		for (var i = 0; i < slides.length; i++) slides[i].style.display = 'none';
+		slide.style.display = 'block';
+	slide.style.left = (window.innerWidth - slide.offsetWidth) / 2 + "px";
+	slide.style.top = (window.innerHeight - slide.offsetHeight) / 2 + "px";
+		if ( classes[1] && styleSlide[classes[1]] ) styleSlide[classes[1]](slide);
+		else styleSlide.normal(slide);
+		resize();
+		if (window.location.hash !== n) window.location.hash = n;
+	}
+	var styleSlide = {
+		heading: function(slide){
+			var p = slide.getElementsByTagName("p")[0];
+			p.style.marginTop = (slide.offsetHeight - p.offsetHeight) / 2 + "px";
+		},
+		image_full: function(slide){
+			var img = slide.getElementsByTagName("img")[0];
+			var p = slide.getElementsByTagName("p")[0];
+			var div = slide.getElementsByTagName("div")[0] || document.createElement("div");
+			div.style.backgroundImage = 'url(' + img.src + ')';
+			slide.insertBefore(div,p);
+	        img.style.display = 'none';
+			p.style.marginTop = (slide.offsetHeight - p.offsetHeight) / 2 + "px";
+		},
+		image_bottom: function(slide){
+			var img = slide.getElementsByTagName("img")[0];
+			if ( !img ) return;
+	        slide.style.backgroundImage = 'url(' + img.src + ')';
+	        img.style.display = 'none';
+		},
+		normal: function(slide){
+			var img = slide.getElementsByTagName("img")[0];
+			var p = slide.getElementsByTagName("p")[0];
+			if ( img ){
+				slide.style.backgroundImage = 'url(' + img.src + ')';
+			} else if (!img && !slide.getElementsByTagName("iframe")[0]){
+				if ( p ){
+					p.style.marginTop = (slide.offsetHeight - p.offsetHeight) / 2 + "px";
+				}
+			}
+		}
+	}
+	document.onclick = function() { go(++current % (slides.length)); };
+    function fwd() { go(Math.min(slides.length - 1, ++current)); }
+    function rev() { go(Math.max(0, --current)); }
+    document.onkeydown = function(e) {
+        if (e.which === 39 || e.which === 34 || e.which === 40) fwd();
+        if (e.which === 37 || e.which === 33 || e.which === 38) rev();
+    };
+    document.ontouchstart = function(e) {
+        var x0 = e.changedTouches[0].pageX;
+        document.ontouchend = function(e) {
+            var x1 = e.changedTouches[0].pageX;
+            if (x1 - x0 < 0) fwd();
+            if (x1 - x0 > 0) rev();
+        };
+    };
+    function parse_hash() {
+        return Math.max(Math.min(slides.length - 1,
+            parseInt(window.location.hash.substring(1), 10)), 0);
+    }
+    if (window.location.hash) current = parse_hash() || current;
+    window.onhashchange = function() {
+        var c = parse_hash();
+        if (c !== current) go(c);
+    };
+    window.onresize = resize;
+    function resize(){
+    	var s = Math.min( 1, Math.min( window.innerHeight / 768, window.innerWidth / 1024 ) );
+    		slides[current].style.webkitTransform = "scale(" + s + "," + s +")";
+			slides[current].style.MozTransform = "scale(" + s + "," + s +")";
+			slides[current].style.msTransform = "scale(" + s + "," + s +")";
+			slides[current].style.transform = "scale(" + s + "," + s +")";
+    }
+    go(current);
+</script>
+
+</body>
+</html>
